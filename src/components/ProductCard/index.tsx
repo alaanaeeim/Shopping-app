@@ -19,7 +19,9 @@ interface IProductCard {
 const ProductCard = ({item, navigation, type}: IProductCard) => {
   return (
     <TouchableOpacity
-      onPress={() => navigation.navigate('ProductInfo', {productID: item.id})}
+      onPress={() =>
+        navigation.navigate('ProductInfo', {productID: item.id, type: type})
+      }
       style={styles.container}>
       <View style={styles.containerCard}>
         {item.isOff ? (
@@ -106,5 +108,6 @@ const styles = StyleSheet.create({
   containerStatus: {
     flexDirection: 'row',
     alignItems: 'center',
+    marginVertical: 2,
   },
 });

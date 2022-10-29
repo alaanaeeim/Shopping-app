@@ -1,5 +1,13 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {View, Text, StyleSheet, StatusBar, FlatList} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  StatusBar,
+  FlatList,
+  ScrollView,
+} from 'react-native';
 import Banner from '../../components/Banner';
 import Header from '../../components/Header';
 import ProductCard from '../../components/ProductCard';
@@ -12,50 +20,56 @@ interface IHomeProps {
 
 const Home = ({navigation}: IHomeProps) => {
   return (
-    <>
-      <View style={styles.statusBar} />
-      <StatusBar backgroundColor={COLORS.black} barStyle="dark-content" />
-      <View style={styles.container}>
-        <Header navigation={navigation} />
-        <View>
-          <View style={styles.continerTitle}>
-            <Text style={styles.title1}>Hi-Fi Shop &amp; Service</Text>
-            <Text style={styles.desc}>
-              Audio shop on Rustaveli Ave 57.
-              {'\n'}This shop offers both products and services
-            </Text>
+    <ScrollView nestedScrollEnabled={true}>
+      <View style={{flex: 1}}>
+        <View style={styles.statusBar} />
+        <StatusBar backgroundColor={COLORS.black} barStyle="dark-content" />
+        <View style={styles.container}>
+          <View>
+            <Header navigation={navigation} />
+            <View style={styles.continerTitle}>
+              <Text style={styles.title1}>Hi-Fi Shop &amp; Service</Text>
+              <Text style={styles.desc}>
+                Audio shop on Rustaveli Ave 57.
+                {'\n'}This shop offers both products and services
+              </Text>
+            </View>
+          </View>
+          <View style={{paddingBottom: 10}}>
+            <Banner title="Products" count={41} />
+            <FlatList
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              data={Items[0]?.products}
+              keyExtractor={item => item.id.toString()}
+              renderItem={({item}) => (
+                <ProductCard
+                  item={item}
+                  navigation={navigation}
+                  type="product"
+                />
+              )}
+            />
+          </View>
+          <View style={{paddingBottom: 20}}>
+            <Banner title="Accessories" count={21} />
+            <FlatList
+              numColumns={2}
+              showsVerticalScrollIndicator={false}
+              data={Items[0]?.accessories}
+              keyExtractor={item => item.id.toString()}
+              renderItem={({item}) => (
+                <ProductCard
+                  item={item}
+                  navigation={navigation}
+                  type="accessories"
+                />
+              )}
+            />
           </View>
         </View>
-        <View>
-          <Banner title="Products" count={41} />
-          <FlatList
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            data={Items[0]?.products}
-            keyExtractor={item => item.id.toString()}
-            renderItem={({item}) => (
-              <ProductCard item={item} navigation={navigation} type="product" />
-            )}
-          />
-        </View>
-        <View style={{flex: 1}}>
-          <Banner title="Accessories" count={21} />
-          <FlatList
-            numColumns={2}
-            showsVerticalScrollIndicator={false}
-            data={Items[0]?.accessories}
-            keyExtractor={item => item.id.toString()}
-            renderItem={({item}) => (
-              <ProductCard
-                item={item}
-                navigation={navigation}
-                type="accessories"
-              />
-            )}
-          />
-        </View>
       </View>
-    </>
+    </ScrollView>
   );
 };
 
