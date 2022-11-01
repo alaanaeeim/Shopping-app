@@ -70,7 +70,7 @@ export const Items = [
     ],
     accessories: [
       {
-        id: 3,
+        id: 5,
         category: 'accessory',
         productName: 'boAt Airdopes 441',
         productPrice: 1999,
@@ -84,75 +84,10 @@ export const Items = [
           require('./images/accessories/boatairpods1.png'),
           require('./images/accessories/boatairpods2.png'),
           require('./images/accessories/boatairpods3.png'),
-        ],
-      },
-      {
-        id: 4,
-        category: 'accessory',
-        productName: 'boAt Bassheads 242',
-        productPrice: 399,
-        description:
-          'Fly into your workouts with precise tones that inspire and energize your system with its HD sound, all the time.',
-        isOff: false,
-        productImage: require('./images/accessories/boatbassheads1.png'),
-        isAvailable: true,
-        productImageList: [
-          require('./images/accessories/boatbassheads1.png'),
-          require('./images/accessories/boatbassheads2.png'),
-          require('./images/accessories/boatbassheads3.png'),
-        ],
-      },
-      {
-        id: 5,
-        category: 'accessory',
-        productName: 'boAt Rockerz 255 Pro+',
-        productPrice: 1499,
-        description:
-          'The unbeatable boAt signature sound shines through no matter what are you playing courtesy its 10mm drivers.',
-        isOff: false,
-        productImage: require('./images/accessories/boatrockerz1.png'),
-        isAvailable: false,
-        productImageList: [
-          require('./images/accessories/boatrockerz1.png'),
-          require('./images/accessories/boatrockerz2.png'),
-          require('./images/accessories/boatrockerz3.png'),
         ],
       },
       {
         id: 6,
-        category: 'accessory',
-        productName: 'Boult Audio AirBass Propods TWS',
-        productPrice: 1299,
-        description:
-          'One Touch Control & Voice Assistant: With one multifunction button, you can play/pause, previous/next track and answer/hang-up calls.Voice assistant function lets you access siri/Google Assistant',
-        isOff: false,
-        productImage: require('./images/accessories/boultairbass1.png'),
-        isAvailable: true,
-        productImageList: [
-          require('./images/accessories/boultairbass1.png'),
-          require('./images/accessories/boultairbass2.png'),
-          require('./images/accessories/boultairbass3.png'),
-        ],
-      },
-      {
-        id: 7,
-        category: 'accessory',
-        productName: 'boAt Airdopes 441',
-        productPrice: 1999,
-        description:
-          'Bluetooth: It has Bluetooth v5.0 with a range of 10m and is compatible with Android & iOS',
-        isOff: true,
-        offPercentage: 18,
-        productImage: require('./images/accessories/boatairpods1.png'),
-        isAvailable: true,
-        productImageList: [
-          require('./images/accessories/boatairpods1.png'),
-          require('./images/accessories/boatairpods2.png'),
-          require('./images/accessories/boatairpods3.png'),
-        ],
-      },
-      {
-        id: 8,
         category: 'accessory',
         productName: 'boAt Bassheads 242',
         productPrice: 399,
@@ -185,6 +120,71 @@ export const Items = [
       },
       {
         id: 10,
+        category: 'accessory',
+        productName: 'Boult Audio AirBass Propods TWS',
+        productPrice: 1299,
+        description:
+          'One Touch Control & Voice Assistant: With one multifunction button, you can play/pause, previous/next track and answer/hang-up calls.Voice assistant function lets you access siri/Google Assistant',
+        isOff: false,
+        productImage: require('./images/accessories/boultairbass1.png'),
+        isAvailable: true,
+        productImageList: [
+          require('./images/accessories/boultairbass1.png'),
+          require('./images/accessories/boultairbass2.png'),
+          require('./images/accessories/boultairbass3.png'),
+        ],
+      },
+      {
+        id: 11,
+        category: 'accessory',
+        productName: 'boAt Airdopes 441',
+        productPrice: 1999,
+        description:
+          'Bluetooth: It has Bluetooth v5.0 with a range of 10m and is compatible with Android & iOS',
+        isOff: true,
+        offPercentage: 18,
+        productImage: require('./images/accessories/boatairpods1.png'),
+        isAvailable: true,
+        productImageList: [
+          require('./images/accessories/boatairpods1.png'),
+          require('./images/accessories/boatairpods2.png'),
+          require('./images/accessories/boatairpods3.png'),
+        ],
+      },
+      {
+        id: 12,
+        category: 'accessory',
+        productName: 'boAt Bassheads 242',
+        productPrice: 399,
+        description:
+          'Fly into your workouts with precise tones that inspire and energize your system with its HD sound, all the time.',
+        isOff: false,
+        productImage: require('./images/accessories/boatbassheads1.png'),
+        isAvailable: true,
+        productImageList: [
+          require('./images/accessories/boatbassheads1.png'),
+          require('./images/accessories/boatbassheads2.png'),
+          require('./images/accessories/boatbassheads3.png'),
+        ],
+      },
+      {
+        id: 13,
+        category: 'accessory',
+        productName: 'boAt Rockerz 255 Pro+',
+        productPrice: 1499,
+        description:
+          'The unbeatable boAt signature sound shines through no matter what are you playing courtesy its 10mm drivers.',
+        isOff: false,
+        productImage: require('./images/accessories/boatrockerz1.png'),
+        isAvailable: false,
+        productImageList: [
+          require('./images/accessories/boatrockerz1.png'),
+          require('./images/accessories/boatrockerz2.png'),
+          require('./images/accessories/boatrockerz3.png'),
+        ],
+      },
+      {
+        id: 14,
         category: 'accessory',
         productName: 'Boult Audio AirBass Propods TWS',
         productPrice: 1299,
