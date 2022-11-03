@@ -299,10 +299,10 @@ const ProductInfo = ({navigation, route}: IProductInfo) => {
                   color: COLORS.black,
                   marginBottom: 4,
                 }}>
-                &#8377; {product?.productPrice}.00
+                $ {product?.productPrice}.00
               </Text>
               <Text>
-                Tax Rate 2%~ &#8377;{product?.productPrice / 20} (&#8377;
+                Tax Rate 2%~ ${product?.productPrice / 20} ($
                 {product?.productPrice + product?.productPrice / 20})
               </Text>
             </View>
