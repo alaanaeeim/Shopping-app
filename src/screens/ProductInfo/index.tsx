@@ -14,7 +14,7 @@ import {
   Text,
 } from 'react-native';
 import {COLORS} from '../../constants/Colors';
-import {Items} from '../../constants/DataBase';
+import {allProducts, Items} from '../../constants/DataBase';
 import Entypo from 'react-native-vector-icons/Entypo';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -26,8 +26,6 @@ interface IProductInfo {
 
 const ProductInfo = ({navigation, route}: IProductInfo) => {
   const [product, setProduct] = useState<any>();
-  const products = Items[0]?.products;
-  const accessories = Items[0]?.accessories;
   let dataSet = new Set<any>();
 
   const {height, width} = Dimensions.get('window');
@@ -35,8 +33,7 @@ const ProductInfo = ({navigation, route}: IProductInfo) => {
   let position = Animated.divide(scrollX, width);
 
   const getProductDetails = () => {
-    const filteredArr =
-      route?.params?.type === 'product' ? products : accessories;
+    const filteredArr = allProducts;
     const selectedProduct: any = filteredArr?.filter(
       (prod: any) => prod.id === route.params.productID,
     );
