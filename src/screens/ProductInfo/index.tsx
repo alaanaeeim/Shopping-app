@@ -12,7 +12,6 @@ import {
   Animated,
   ScrollView,
   Text,
-  ToastAndroid,
 } from 'react-native';
 import {COLORS} from '../../constants/Colors';
 import {Items} from '../../constants/DataBase';
@@ -113,7 +112,7 @@ const ProductInfo = ({navigation, route}: IProductInfo) => {
             <FlatList
               horizontal
               data={product?.productImageList}
-              keyExtractor={item => item.id}
+              keyExtractor={item => item}
               showsHorizontalScrollIndicator={false}
               decelerationRate={0.8}
               snapToInterval={width}
@@ -124,6 +123,7 @@ const ProductInfo = ({navigation, route}: IProductInfo) => {
               )}
               renderItem={({item}) => (
                 <View
+                  key={item}
                   style={{
                     width: width,
                     height: 240,

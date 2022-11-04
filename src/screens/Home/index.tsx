@@ -44,6 +44,7 @@ const Home = ({navigation}: IHomeProps) => {
               keyExtractor={item => item.id.toString()}
               renderItem={({item}) => (
                 <ProductCard
+                  key={item.id.toString()}
                   item={item}
                   navigation={navigation}
                   type="product"
@@ -60,6 +61,7 @@ const Home = ({navigation}: IHomeProps) => {
               keyExtractor={item => item.id.toString()}
               renderItem={({item}) => (
                 <ProductCard
+                  key={item.id.toString()}
                   item={item}
                   navigation={navigation}
                   type="accessories"
