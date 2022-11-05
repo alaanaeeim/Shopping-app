@@ -7,6 +7,7 @@ import {
   StatusBar,
   FlatList,
   ScrollView,
+  Platform,
 } from 'react-native';
 import Banner from '../../components/Banner';
 import Header from '../../components/Header';
@@ -84,7 +85,7 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.white,
   },
   statusBar: {
-    height: 50,
+    height: Platform.OS === 'android' ? 15 : 50,
     backgroundColor: COLORS.white,
   },
   continerTitle: {

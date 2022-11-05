@@ -12,6 +12,7 @@ import {
   Animated,
   ScrollView,
   Text,
+  Platform,
 } from 'react-native';
 import {COLORS} from '../../constants/Colors';
 import {allProducts, Items} from '../../constants/DataBase';
@@ -73,7 +74,7 @@ const ProductInfo = ({navigation, route}: IProductInfo) => {
         <ScrollView>
           <View
             style={{
-              paddingTop: 50,
+              paddingTop: Platform.OS === 'ios' ? 50 : 10,
               width: width,
               backgroundColor: COLORS.backgroundLight,
               borderBottomLeftRadius: 15,
@@ -144,7 +145,7 @@ const ProductInfo = ({navigation, route}: IProductInfo) => {
                 alignItems: 'center',
                 justifyContent: 'center',
                 marginBottom: 16,
-                marginTop: 32,
+                marginTop: 25,
               }}>
               {product?.productImageList
                 ? product?.productImageList.map((data: any, index: any) => {
