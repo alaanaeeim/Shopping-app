@@ -40,22 +40,21 @@ const ProductInfo = ({navigation, route}: IProductInfo) => {
     setProduct(selectedProduct[0]);
   };
 
-  const addToCart = async (id: any) => {
-    let itemsArr: any[] = [];
+  const addToCart = async (prod: any) => {
     let itemArray: any = await AsyncStorage.getItem('cartItems');
+    let cartProducts: any = await AsyncStorage.getItem('cartProducts');
+
     itemArray = JSON.parse(itemArray) || [];
+    cartProducts = JSON.parse(cartProducts) || [];
 
-    for (var value of itemArray) {
-      dataSet.add(value);
+    if (!itemArray.includes(prod?.id)) {
+      itemArray.push(prod?.id);
+      prod.count = 1;
+      cartProducts.push(prod);
+      await AsyncStorage.setItem('cartProducts', JSON.stringify(cartProducts));
     }
 
-    dataSet.add(id);
-
-    for (var item of dataSet.values()) {
-      itemsArr.push(item);
-    }
-
-    await AsyncStorage.setItem('cartItems', JSON.stringify(itemsArr));
+    await AsyncStorage.setItem('cartItems', JSON.stringify(itemArray));
     Toast.showWithGravity(
       'Item Added Successfully to cart',
       Toast.SHORT,
@@ -316,9 +315,7 @@ const ProductInfo = ({navigation, route}: IProductInfo) => {
             alignItems: 'center',
           }}>
           <TouchableOpacity
-            onPress={() =>
-              product?.isAvailable ? addToCart(product?.id) : null
-            }
+            onPress={() => (product?.isAvailable ? addToCart(product) : null)}
             style={{
               width: '100%',
               height: '90%',

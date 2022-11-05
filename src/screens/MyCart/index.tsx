@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, {useState, useEffect} from 'react';
@@ -29,65 +30,104 @@ const MyCart = ({navigation}: ICart) => {
   //get data from local DB by ID
   const getDataFromDB = async () => {
     let items: any = await AsyncStorage.getItem('cartItems');
-    items = JSON.parse(items);
+    let cartProducts: any = await AsyncStorage.getItem('cartProducts');
+
+    items = JSON.parse(items) || [];
+    cartProducts = JSON.parse(cartProducts) || [];
 
     let productData: any[] = [];
     if (items) {
       allProducts.forEach((data: any) => {
-        console.log('product id === > ', data.id);
         if (items.includes(data.id)) {
           productData.push(data);
           return;
         }
       });
-      setProduct(productData);
-      getTotal(productData);
+      setProduct(cartProducts);
+      getTotal(cartProducts);
     } else {
       setProduct(false);
       getTotal(false);
     }
   };
 
+  const increaseDecreaseProcutCount = async (
+    prod: any,
+    index: number,
+    action: boolean,
+  ) => {
+    let items: any = await AsyncStorage.getItem('cartItems');
+    let cartProducts: any = await AsyncStorage.getItem('cartProducts');
+    items = JSON.parse(items) || [];
+    cartProducts = JSON.parse(cartProducts) || [];
+
+    if (action) {
+      cartProducts[index].count += 1;
+    } else {
+      if (prod.count <= 1) {
+        cartProducts.splice(index, 1);
+      } else {
+        cartProducts[index].count -= 1;
+      }
+    }
+
+    await AsyncStorage.setItem('cartProducts', JSON.stringify(cartProducts));
+    let cartProductsAfterUpdates: any = await AsyncStorage.getItem(
+      'cartProducts',
+    );
+    cartProductsAfterUpdates = JSON.parse(cartProductsAfterUpdates) || [];
+    setProduct(cartProductsAfterUpdates);
+    getTotal(cartProductsAfterUpdates);
+  };
+
   //get total price of all items in the cart
-  const getTotal = (productData: any) => {
+  const getTotal = (productsData: any) => {
     let totalAmount = 0;
-    for (let index = 0; index < productData.length; index++) {
-      let productPrice = productData[index].productPrice;
-      totalAmount = totalAmount + productPrice;
+    for (var i = 0; i < productsData.length; i++) {
+      let productPrice = productsData[i].productPrice;
+      totalAmount = totalAmount + productPrice * productsData[i].count;
     }
     setTotal(totalAmount);
   };
 
   //remove data from Cart
-
   const removeItemFromCart = async (id: any) => {
     let itemArray: any = await AsyncStorage.getItem('cartItems');
     itemArray = JSON.parse(itemArray);
+
+    let cartProducts: any = await AsyncStorage.getItem('cartProducts');
+    cartProducts = JSON.parse(cartProducts) || [];
+
     if (itemArray) {
       let array = itemArray;
       for (let index = 0; index < array.length; index++) {
         if (array[index] === id) {
           array.splice(index, 1);
+          cartProducts.splice(index, 1);
         }
 
         await AsyncStorage.setItem('cartItems', JSON.stringify(array));
+        await AsyncStorage.setItem(
+          'cartProducts',
+          JSON.stringify(cartProducts),
+        );
+
         getDataFromDB();
       }
     }
   };
 
   //checkout
-
   const checkOut = async () => {
     try {
-      await AsyncStorage.removeItem('cartItems');
+      await AsyncStorage.clear();
     } catch (error) {
       return error;
     }
     navigation.navigate('Home');
   };
 
-  const renderProducts = (data: any) => {
+  const renderProducts = (data: any, index: number) => {
     return (
       <TouchableOpacity
         key={data.id.toString()}
@@ -170,6 +210,7 @@ const MyCart = ({navigation}: ICart) => {
                 alignItems: 'center',
               }}>
               <TouchableOpacity
+                onPress={() => increaseDecreaseProcutCount(data, index, false)}
                 style={{
                   borderRadius: 100,
                   marginRight: 20,
@@ -186,8 +227,9 @@ const MyCart = ({navigation}: ICart) => {
                   }}
                 />
               </TouchableOpacity>
-              <Text>1</Text>
+              <Text>{data?.count}</Text>
               <TouchableOpacity
+                onPress={() => increaseDecreaseProcutCount(data, index, true)}
                 style={{
                   borderRadius: 100,
                   marginLeft: 20,
