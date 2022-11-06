@@ -29,5 +29,10 @@ And run using `npx react-native start` && `npx react-native run-android` && `npx
   <img src="screenshot/image3.png" width="40%" />
   <img src="screenshot/imageIos4.png" width="40%" />
   <img src="screenshot/image4.png" width="40%" />
-
+<img src="screenshot/imageIos5.png" width="40%" />
+  <img src="screenshot/image5.png" width="40%" />
+  <img src="screenshot/imageIos6.png" width="40%" />
+  <img src="screenshot/image6.png" width="40%" />
+  <img src="screenshot/imageIos7.png" width="40%" />
+  <img src="screenshot/image7.png" width="40%" />
 </p>
