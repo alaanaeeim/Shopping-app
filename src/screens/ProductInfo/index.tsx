@@ -20,6 +20,8 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Toast from 'react-native-simple-toast';
+import {useDispatch, useSelector} from 'react-redux';
+import {addNewProduct} from '../../store/actions/ProductAction';
 interface IProductInfo {
   navigation?: any;
   route?: any;
@@ -32,6 +34,9 @@ const ProductInfo = ({navigation, route}: IProductInfo) => {
   const {height, width} = Dimensions.get('window');
   const scrollX = new Animated.Value(0);
   let position = Animated.divide(scrollX, width);
+  const dispatch = useDispatch();
+
+  const productsStore = useSelector((state: any) => state.product);
 
   const getProductDetails = () => {
     const filteredArr = allProducts;
@@ -44,7 +49,6 @@ const ProductInfo = ({navigation, route}: IProductInfo) => {
   const addToCart = async (prod: any) => {
     let itemArray: any = await AsyncStorage.getItem('cartItems');
     let cartProducts: any = await AsyncStorage.getItem('cartProducts');
-
     itemArray = JSON.parse(itemArray) || [];
     cartProducts = JSON.parse(cartProducts) || [];
 
@@ -53,6 +57,7 @@ const ProductInfo = ({navigation, route}: IProductInfo) => {
       prod.count = 1;
       cartProducts.push(prod);
       await AsyncStorage.setItem('cartProducts', JSON.stringify(cartProducts));
+      dispatch(addNewProduct([...productsStore?.products, prod]));
     }
 
     await AsyncStorage.setItem('cartItems', JSON.stringify(itemArray));
